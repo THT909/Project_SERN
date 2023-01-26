@@ -11,11 +11,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      currentdescriptionNumber: {
-        type: Sequelize.TEXT
+      name: {
+        type: Sequelize.STRING
       },
       image: {
         type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
