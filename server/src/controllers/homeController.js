@@ -29,19 +29,42 @@ let postCRUD=async(req,res)=>{
 }
 let displayGetCRUD= async(req, res)=>{
     let data = await CRUDServive.getAllUser()
-    console.log('---------------------------')
-    console.log(data)
-    console.log('---------------------------')
+    // console.log('---------------------------')
+    // console.log(data)
+    // console.log('---------------------------')
     return res.render('test/displayCRUD.ejs',{
         dataTable:data
     })
 }
-
+let getEditCRUD= async(req, res)=>{
+    let userId =req.query.id
+    if(userId){
+        let userData = await CRUDServive.getUserInfoById(userId)
+        // console.log('--------------------------')
+        // console.log(userData)
+        // console.log('--------------------------')
+        // return res.send('Users found')
+        return res.render('test/editCRUD.ejs',{
+            user:userData
+        })
+    }
+    else{
+        return res.send('Users not found')
+    }
+}
+let putCRUD=async(req,res)=>{
+    let data =req.body
+    let allUser = await CRUDServive.updateUserData(data)
+    return res.render('test/displayCRUD.ejs',{
+        dataTable:allUser
+    })
+}
 module.exports ={
     getHomePage: getHomePage,
     getAboutPage: getAboutPage,
     getCRUD: getCRUD,
     postCRUD:postCRUD,
     displayGetCRUD:displayGetCRUD,
-
+    getEditCRUD:getEditCRUD,
+    putCRUD:putCRUD
 }

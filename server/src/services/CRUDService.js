@@ -46,7 +46,50 @@ let getAllUser=()=>{
         }
     })
 }
+
+let getUserInfoById=(userId)=>{
+    return new Promise(async(resolve,reject)=>{
+        try {
+            let user= await db.User.findOne({
+                where:{id:userId},
+                raw: true
+            })
+            if(user){
+                resolve(user)//return object with id 
+            }
+            else{
+                resolve([])//id over max id return null array
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let updateUserData=(data)=>{
+    return new Promise(async(resolve, reject)=>{
+        try {
+            await db.User.update({
+                firstName:data.firstName,
+                lastName:data.lastName,
+                address:data.address,
+                phoneNumber:data.phoneNumber,
+                },
+                {
+                where:{id:data.id}
+            })
+            let allUser=await db.User.findAll();
+            resolve(allUser)
+        } catch (e) {
+            console.log(e)
+        }
+    })
+}
+
 module.exports={
     createNewUser:createNewUser,
-    getAllUser:getAllUser
+    getAllUser:getAllUser,
+    getUserInfoById:getUserInfoById,
+    updateUserData:updateUserData,
+
 }
