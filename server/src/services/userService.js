@@ -148,7 +148,7 @@ let updateUserData = (data) => {
                 firstName: data.firstName,
                 lastName: data.lastName,
                 address: data.address,
-                phoneNumber: data.phoneNumber,
+                // phoneNumber: data.phoneNumber,
             },
                 {
                     where: { id: data.id }
