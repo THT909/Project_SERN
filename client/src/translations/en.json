@@ -1,4 +1,32 @@
 {
+    "homeHeader": {
+        "speciality": "Medical specialty",
+        "searchDoctor": "Find a doctor by specialty",
+        "facility": "Facility",
+        "selectFacility": "Choosing a clinic hospital",
+        "doctor": "Doctor",
+        "choseDoctor": "Choose a good doctor",
+        "medicalPackge": "Examination package",
+        "generalMedical": "General examination",
+        "support": "support ",
+        "language": "EN"
+    },
+    "banner": {
+        "title1": "MEDICAL BACKGROUND",
+        "title2": "HOLISTIC HEALTHCARE",
+        "placeholderSearch": "Find a specialist",
+        "option": {
+            "sub2": "Specialty examination",
+            "sub3": "remote  examination",
+            "sub1": "General examintion",
+            "sub4": "medical test",
+            "sub5": "mental health",
+            "sub6": "dentistry",
+            "sub7": "surgical package",
+            "sub8": "medical products",
+            "sub9": "corporate health"
+        }
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

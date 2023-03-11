@@ -1,0 +1,246 @@
+@import "../../styles/common.scss";
+
+.home-header-container {
+    height : 60px;
+    width  : 100%;
+    padding: 0 20px;
+
+    .home-header-content {
+        width  : 100%;
+        height : 100%;
+        display: flex;
+
+        .left-content {
+            width         : 25%;
+            // border     : 1px solid red;
+            align-items   : center;
+            display       : flex;
+
+            i {
+                font-size: 25px;
+                cursor   : pointer;
+            }
+
+            // .header-logo {
+            //     background     : url('../../assets/logo.png') no-repeat center center;
+            //     background-size: 45px;
+            //     margin         : 0 10px;
+            //     height         : 100%;
+            //     width          : 45px;
+            //     cursor         : pointer;
+            // }
+            img {
+                width      : 45px;
+                height     : 45px;
+                margin-left: 5px;
+            }
+        }
+
+        .center-content {
+            width             : 50%;
+            // border         : 1px solid red;
+            display           : flex;
+            justify-content   : space-evenly;
+            align-items       : center;
+
+            .child-content {
+                cursor: pointer;
+
+                .sub-title {
+                    font-size  : 12px;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .right-content {
+            cursor            : pointer;
+            width             : 25%;
+            // border         : 1px solid red;
+            display           : flex;
+            align-items       : center;
+            justify-content   : right;
+
+            i {
+                color       : $colormain;
+                margin-right: 2px;
+            }
+
+            .flag {
+                margin-left: 10px;
+            }
+        }
+
+
+    }
+
+
+}
+
+.home-header-banner {
+    background-image   : url('../../assets/bookingcare-cover-4.jpg');
+    background-size    : cover;
+    background-repeat  : no-repeat;
+    background-position: center;
+
+    font-stretch  : 100%;
+    box-sizing    : border-box;
+    display       : flex;
+    flex-direction: column;
+
+    .content-up {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
+        padding-bottom  : 140px;
+
+        .title {
+            padding-top: 45px;
+            color      : white;
+            font-size  : 32px;
+            line-height: 48px;
+            outline    : none;
+            font-weight: 400;
+            text-shadow: rgb(51, 51, 51) 1px 1px 1px;
+
+        }
+
+        .title-sub {
+            text-align   : center;
+            font-weight  : 700;
+            line-height  : 48px;
+            font-size    : 32px;
+            color        : white;
+            margin-bottom: 20px;
+            text-shadow  : rgb(51, 51, 51) 1px 1px 1px;
+        }
+
+        .search {
+            display         : flex;
+            margin          : auto;
+            justify-content : center;
+            align-items     : center;
+            max-width       : 485px;
+            min-width       : 300px;
+            border-radius   : 25px;
+            border          : none;
+            height          : 50px;
+            background-color: rgb(247, 216, 0);
+
+
+            i {
+                margin: 0 5px;
+            }
+
+            input {
+                width     : 420px;
+                border    : none;
+                background: transparent;
+                outline   : none;
+
+            }
+
+        }
+    }
+
+    .content-down {
+
+        display         : flex;
+        cursor          : pointer;
+        justify-content : center;
+        flex-wrap       : wrap;
+        padding         : 30px 0;
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+
+
+        .option {
+            text-align: center;
+
+
+
+            .option-child {
+                width  : 150px;
+                padding: 5px;
+
+                .icon-child {
+                    background-color: white;
+                    width           : 50px;
+                    height          : 50px;
+                    box-shadow      : rgb(51, 51, 51) 0px 1px 2px 0px;
+                    border-radius   : 50%;
+                    margin          : auto;
+
+                    .img1 {
+                        background     : url('../../assets/option/133537-khamchuyenkhoa.png')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img2 {
+                        background     : url('../../assets/option/133657-khamtuxa.png')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img3 {
+                        background     : url('../../assets/option/133744-khamtongquat.png')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img4 {
+                        background     : url('../../assets/option/101157-icon-lich-su.jpg')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img5 {
+                        background     : url('../../assets/option/133744-suckhoetinhthan.png')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img6 {
+                        background     : url('../../assets/option/104635-khamnhakhoa.png')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img7 {
+                        background     : url('../../assets/option/151930-phau-thuat.jpg')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img8 {
+                        background     : url('../../assets/option/133744-sanphamyte.png')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                    .img9 {
+                        background     : url('../../assets/option/101157-icon-lich-su.jpg')no-repeat center center;
+                        background-size: 32px;
+                        height         : 50px;
+                        width          : 50px;
+                    }
+
+                }
+
+                .text-child {
+                    text-transform: capitalize;
+                    line-height   : 24px;
+                    font-size     : 16px;
+                    font-weight   : 700;
+                    text-shadow   : rgb(214, 214, 214) 1px 1px 1px;
+                }
+            }
+        }
+    }
+}
