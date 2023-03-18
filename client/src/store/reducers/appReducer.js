@@ -31,6 +31,15 @@ const appReducer = (state = initialState, action) => {
                     ...action.contentOfConfirmModal
                 }
             }
+
+        //case change language , that call action of file app action
+        case actionTypes.CHANGE_LANGUAGES:
+            // console.log('redux change language', action)
+            return {
+                ...state,
+                language: action.language,
+            }
+
         default:
             return state;
     }

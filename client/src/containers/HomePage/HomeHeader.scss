@@ -68,7 +68,19 @@
 
             .flag {
                 margin-left: 10px;
+                opacity    : 0.5;
+
+                &:hover {
+                    opacity: 1;
+                }
             }
+
+
+            .active {
+                color  : $colormain;
+                opacity: 1;
+            }
+
         }
 
 

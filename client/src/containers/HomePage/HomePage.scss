@@ -1,0 +1,85 @@
+@import "../../styles/common.scss";
+
+.section-slider {
+    padding    : 20px 0;
+    width      : 100%;
+    display    : block;
+    font-family: $fontslider;
+
+
+
+    .section-content {
+        // border         : 1px solid yellow;
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        margin         : auto;
+        width          : 80%;
+
+        .section-header {
+            display        : flex;
+            justify-content: space-between;
+            padding-bottom : 20px;
+
+
+            span {
+                font-size  : 24px;
+                font-weight: 700;
+            }
+
+
+            button {
+                color: #fff;
+
+                background-color: rgb(173, 171, 171);
+                border          : none;
+                border-radius   : 4px;
+                text-align      : center;
+                font-size       : 16px;
+                cursor          : pointer;
+                margin          : 2px;
+                padding         : 8 12px;
+
+                &:hover {
+                    background-color: $colormain;
+                    color           : black;
+                }
+            }
+
+
+
+
+
+
+        }
+
+        .slide-customize {
+            // border    : solid 1px rebeccapurple;
+            padding   : 0 8px;
+            text-align: center;
+
+            img {
+                height       : 200px;
+                width        : 100%;
+                margin       : 0 auto;
+                // border    : 1px solid blue;
+                object-fit   : cover;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size : 13px;
+
+                font-weight: 400;
+
+
+                &:hover {
+                    color: $colormain;
+                }
+            }
+        }
+
+    }
+
+
+}
