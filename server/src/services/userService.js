@@ -189,10 +189,38 @@ let deleteUser = (id) => {
     })
 }
 
+let getAllcodeService = (typeInput) => {
+    return new Promise(async (resolve, reject) => {
+        // console.log(typeInput)
+        try {
+
+            if (!typeInput) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'missing required parameter !'
+                });
+            }
+            else {
+
+                let res = {};
+                let allCode = await db.Allcode.findAll({
+                    where: { type: typeInput }
+                });
+                res.errCode = 0
+                res.data = allCode
+                resolve(res);
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
 module.exports = {
     hanleUserLogin: hanleUserLogin,
     getAllUsers: getAllUsers,
     createNewUser: createNewUser,
     deleteUser: deleteUser,
     updateUserData: updateUserData,
+    getAllcodeService: getAllcodeService,
+
 }

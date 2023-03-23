@@ -15,8 +15,8 @@ import Slider7 from "../../../assets/slider/121232-y-hoc-co-truyen.jpg";
 
 
 class Specialty extends Component {
-    render() {
 
+    render() {
         return (
             <div className="section-slider section-specialty">
                 <div className="section-content">

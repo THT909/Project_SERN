@@ -9,7 +9,7 @@ let handleLogin = async (req, res) => {
     if (!email || !password) {
         return res.status(500).json({
             errCode: 1,
-            message: 'Missing input parameter',
+            errMessage: 'Missing input parameter',
         })
     }
     let userData = await userService.hanleUserLogin(email, password)
@@ -62,10 +62,25 @@ let handleDeleteUser = async (req, res) => {
     let message = await userService.deleteUser(req.body.id);
     return res.status(200).json(message);
 }
+
+let getAllCode = async (req, res) => {
+    try {
+        let data = await userService.getAllcodeService(req.query.type);
+        return res.status(200).json(data);
+    } catch (e) {
+        console.log('Get all code error:', e)
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'Error from server'
+        })
+    }
+
+}
 module.exports = {
     handleLogin: handleLogin,
     handleGetAllUser: handleGetAllUser,
     handleCreateNewUser: handleCreateNewUser,
     handleEditUser: handleEditUser,
     handleDeleteUser: handleDeleteUser,
+    getAllCode: getAllCode,
 }

@@ -1,0 +1,30 @@
+.section-about {
+    box-sizing      : border-box;
+    border-bottom   : 3px solid #efeef5;
+    border-top      : 3px solid #efeef5;
+    background-color: rgb(245, 245, 245);
+
+    .section-content {
+        .about-content {
+            // border: 1px solid red;
+            display: flex;
+            gap    : 30px;
+
+
+            .right-content {
+                width : 50%;
+                height: 400px;
+            }
+
+            .left-content {
+                width: 50%;
+
+                p {
+                    text-align: justify;
+                    font-style: italic;
+                    font-size : 16px;
+                }
+            }
+        }
+    }
+}

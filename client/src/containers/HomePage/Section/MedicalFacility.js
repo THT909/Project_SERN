@@ -25,7 +25,7 @@ class MedicalFacility extends Component {
                     <Slider {...this.props.settings}>
                         <div className='slide-customize'>
                             <img src={Slider1} alt="" />
-                            <d>Cơ xương khớp</d>
+                            <p>Cơ xương khớp</p>
                         </div>
                         <div className='slide-customize'>
                             <img src={Slider2} alt="" />

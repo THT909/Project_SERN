@@ -16,8 +16,7 @@ class Handbook extends Component {
 
 
     render() {
-        let setting = this.props.settings;
-        setting.slidesToShow = 2;
+
         return (
             <div className="section-slider section-handbook">
                 <div className="section-content">
@@ -25,7 +24,7 @@ class Handbook extends Component {
                         <span> Cẩm nang</span>
                         <button>Tất cả bài viết</button>
                     </div>
-                    <Slider {...setting}>
+                    <Slider {...this.props.settings}>
                         <div className='slide-handbook'>
                             <img src={Slider1} alt="" />
                             <p>Cơ xương khớp</p>
