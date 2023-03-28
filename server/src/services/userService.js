@@ -12,7 +12,7 @@ let hanleUserLogin = (email, password) => {
             if (isExist) {
                 //if alredy exist? compare:reject
                 let user = await db.User.findOne({
-                    attributes: ['email', 'roleId', 'password'],
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'],
                     where: { email: email },
                     raw: true
                 });

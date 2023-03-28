@@ -1,4 +1,4 @@
-import { template } from 'lodash'
+// import { template } from 'lodash'
 import axios from '../axios'
 
 const handleLoginApi = (userEmail, userPassword) => {
@@ -22,10 +22,14 @@ const deleteUserService = (id) => {
 const editUserService = (data) => {
     return axios.put('/api/edit-user', data)
 }
+const getAllCodeService = (data) => {
+    return axios.get(`/api/allcode?type=${data}`)
+}
 export {
     handleLoginApi,
     getAllUsers,
     createNewUserService,
     deleteUserService,
     editUserService,
+    getAllCodeService,
 };
