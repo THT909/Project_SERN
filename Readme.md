@@ -4,14 +4,16 @@
     * cài react
 
 ### Clone dự án
-## sau khi colne đự án từ github 
+## sau khi clone đự án từ github 
 * Với Phần 'fontend' chạy lần lượt các lệnh sau
-    ```sh cd ./Project_SERN/client
+    ```sh 
+    cd ./Project_SERN/client
     npm init
     npm i 
 
 * Với phần 'backend' chạy lần lượt các lệnh sau
-    ```sh cd ./Project_SERN/server
+    ```sh 
+    cd ./Project_SERN/server
     npm init
     npm i 
 
