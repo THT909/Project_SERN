@@ -3,6 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { LANGUAGES } from "../../../utils"
 import * as actions from "../../../store/actions"
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 class UserRedux extends Component {
 
     constructor(props) {
@@ -10,7 +12,9 @@ class UserRedux extends Component {
         this.state = {
             genderArr: [],
             positionArr: [],
-            roleArr: []
+            roleArr: [],
+            previewImgURL: '',
+            isOpen: false
         }
     }
     async componentDidMount() {
@@ -47,7 +51,22 @@ class UserRedux extends Component {
                 roleArr: this.props.roleRedux
             })
         }
-
+    }
+    handleOnChangeImage = (event) => {
+        let data = event.target.files;
+        let file = data[0];
+        if (file) {
+            let objectUrl = URL.createObjectURL(file)
+            this.setState({
+                previewImgURL: objectUrl
+            })
+        }
+    }
+    openPreviewImage = () => {
+        if (!this.state.previewImgURL) return
+        this.setState({
+            isOpen: true
+        })
     }
     render() {
         // console.log('check state', this.state)
@@ -147,9 +166,30 @@ class UserRedux extends Component {
                                     <label htmlFor=""><FormattedMessage id='manage-user.img' /></label>
                                     <div className="">
 
-                                        <input className='form-control' id='previewImg' type="file" name="" />
-                                        <label htmlFor="previewImg">Tải ảnh</label>
-                                        <div className="priview-image"></div>
+                                        <input
+                                            className='form-control'
+                                            id='previewImg'
+                                            type="file"
+                                            accept=".jpg,.png "
+                                            onChange={(event) => this.handleOnChangeImage(event)}
+                                        />
+                                        {/* <label htmlFor="previewImg">Tải ảnh</label> */}
+                                        <div className='w-100 mt-3'
+                                            style={{
+                                                "height": "50px",
+                                                "backgroundImage": `url(${this.state.previewImgURL})`,
+                                                "backgroundRepeat": "no-repeat",
+                                                "backgroundSize": "contain",
+                                                "backgroundPosition": "center",
+                                                "cursor": "pointer",
+                                                "borderWidth": "1px",
+                                                "borderStyle": "solid",
+                                                "borderColor": "#ddd",
+
+
+                                            }}
+                                            onClick={() => this.openPreviewImage()}
+                                        ></div>
                                     </div>
                                 </div>
                             </div>
@@ -159,6 +199,12 @@ class UserRedux extends Component {
                         </div>
                     </div>
                 </div>
+                {this.state.isOpen === true &&
+                    <Lightbox
+                        mainSrc={this.state.previewImgURL}
+                        onCloseRequest={() => this.setState({ isOpen: false })}
+                    />
+                }
 
             </div>
         )
