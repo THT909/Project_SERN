@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import "./HomeFooter.scss";
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 
 
 class HomeFooter extends Component {
@@ -15,7 +15,7 @@ class HomeFooter extends Component {
 
                 </div>
                 <div className="bottom-footer">
-                    <p>&copy; 2023 Make by THT909 <a href="#">More information</a> </p>
+                    <p>&copy; 2023 Make by THT909 <a href=' ' >More information</a> </p>
 
                 </div>
             </div>

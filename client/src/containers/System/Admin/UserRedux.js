@@ -5,6 +5,8 @@ import { LANGUAGES } from "../../../utils"
 import * as actions from "../../../store/actions"
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+
+import TableManageUser from './TableManageUser';
 class UserRedux extends Component {
 
     constructor(props) {
@@ -26,6 +28,7 @@ class UserRedux extends Component {
             position: '',
             role: '',
             avatar: '',
+
         }
     }
     async componentDidMount() {
@@ -67,6 +70,20 @@ class UserRedux extends Component {
                 role: arrRole && arrRole.length > 0 ? arrRole[0].key : ''
             })
         }
+        if (prevProps.listUsersRedux !== this.props.listUsersRedux) {
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                phoneNumber: '',
+                address: '',
+                gender: '',
+                position: '',
+                role: '',
+                avatar: '',
+            })
+        }
     }
     handleOnChangeImage = (event) => {
         let data = event.target.files;
@@ -99,7 +116,7 @@ class UserRedux extends Component {
             gender: this.state.gender,
             role: this.state.role,
             position: this.state.position,
-            avatar: this.state.avatar
+            // avatar: this.state.avatar
         })
     }
     onChangeInput = (event, id) => {
@@ -170,6 +187,7 @@ class UserRedux extends Component {
                                 <div className="col-6">
                                     <label htmlFor=""><FormattedMessage id='manage-user.email' /></label>
                                     <input
+                                        autoComplete='off'
                                         className='form-control'
                                         type="email"
                                         value={email}
@@ -272,7 +290,7 @@ class UserRedux extends Component {
                                             })}
                                     </select>
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-5">
                                     <label htmlFor=""><FormattedMessage id='manage-user.img' /></label>
                                     <div className="">
 
@@ -303,7 +321,7 @@ class UserRedux extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 mt-3">
+                            <div className="col-12 my-3">
                                 <button
                                     className="btn btn-primary"
                                     onClick={() => this.handleSaveUser()}
@@ -312,7 +330,11 @@ class UserRedux extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="col-12 container">
+                        <TableManageUser />
+                    </div>
                 </div>
+
                 {this.state.isOpen === true &&
                     <Lightbox
                         mainSrc={this.state.previewImgURL}
@@ -333,6 +355,8 @@ const mapStateToProps = state => {
         roleRedux: state.admin.roles,
         positionRedux: state.admin.positions,
         isLoadingGender: state.admin.isLoadingGender,
+        listUsersRedux: state.admin.users
+
     };
 };
 
@@ -343,6 +367,7 @@ const mapDispatchToProps = dispatch => {
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         createNewUser: (data) => dispatch(actions.createNewUser(data)),
+        fetchUserRedux: () => dispatch(actions.fetchAllUserStart())
         // processLogout: () => dispatch(actions.processLogout()),
         // changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
     };

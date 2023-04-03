@@ -4,6 +4,7 @@ import userController from "../controllers/userController"
 let router = express.Router();
 
 let initWebRouters = (app) => {
+    //this router use for backend
     router.get('/', homeController.getHomePage)
     router.get('/about', homeController.getAboutPage)
     router.get('/crud', homeController.getCRUD)

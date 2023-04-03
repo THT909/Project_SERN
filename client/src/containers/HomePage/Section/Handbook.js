@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import "./Handbook.scss";
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import Slider1 from "../../../assets/slider/120331-co-xuong-khop.jpg";
 import Slider2 from "../../../assets/slider/120741-tim-mach.jpg";
