@@ -54,6 +54,7 @@
         "position": "Chức danh",
         "role": "Vai trò",
         "img": "Ảnh đại điện",
-        "submit": "Lưu user"
+        "submit": "Lưu user",
+        "edit": "Lưu thay đổi"
     }
 }

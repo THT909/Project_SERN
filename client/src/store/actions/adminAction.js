@@ -3,6 +3,7 @@ import {
     getAllUsers,
     createNewUserService,
     deleteUserService,
+    editUserService,
 } from '../../services/userService';
 import actionTypes from './actionTypes';
 import { toast } from 'react-toastify';
@@ -146,6 +147,35 @@ export const deleteUserSuccess = () => ({
 })
 export const deleteUserFailded = () => ({
     type: actionTypes.DELETE_USER_FAILDED
+})
+export const updateUser = (data) => {
+    return async (dispatch, getState) => {
+
+        try {
+
+            let res = await editUserService(data);
+            console.log("check id redux", data)
+            console.log('check admin action log: ', res)
+            if (res && res.errCode === 0) {
+                toast.success("Update a user suceed !")
+                dispatch(updateUserSuccess());
+                dispatch(fetchAllUserStart());
+            } else {
+                toast.error("update a user error !")
+                dispatch(updateUserFailded());
+            }
+        } catch (e) {
+            toast.error("Update a  user error !")
+            dispatch(updateUserFailded());
+            console.log('Update user err', e)
+        }
+    }
+}
+export const updateUserSuccess = () => ({
+    type: actionTypes.UPDATE_USER_SUCCESS,
+})
+export const updateUserFailded = () => ({
+    type: actionTypes.UPDATE_USER_FAILDED
 })
 // Redux Api call to get all user
 export const fetchAllUserStart = () => {

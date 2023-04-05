@@ -144,13 +144,22 @@ let updateUserData = (data) => {
                     errCode: 2,
                     errMessage: `Can't find user`
                 })
+                if (!data.id || !data.roleId || !data.positionId || !data.gender) {
+                    resolve({
+                        errCode: 3,
+                        errMessage: `Missing parameter`
+                    })
+                }
             }
 
             await db.User.update({
                 firstName: data.firstName,
                 lastName: data.lastName,
                 address: data.address,
-                // phoneNumber: data.phoneNumber,
+                phoneNumber: data.phoneNumber,
+                gender: data.gender,
+                roleId: data.role,
+                positionId: data.position,
             },
                 {
                     where: { id: data.id }
