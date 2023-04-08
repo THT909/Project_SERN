@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { LANGUAGES, CRUD_ACTION } from "../../../utils"
+import { LANGUAGES, CRUD_ACTION, CommonUtils } from "../../../utils"
 import * as actions from "../../../store/actions"
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
 import TableManageUser from './TableManageUser';
+
 class UserRedux extends Component {
 
     constructor(props) {
@@ -87,20 +88,34 @@ class UserRedux extends Component {
                 position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : '',
                 role: arrRole && arrRole.length > 0 ? arrRole[0].key : '',
                 avatar: '',
-                action: CRUD_ACTION.CREATE
+                action: CRUD_ACTION.CREATE,
+                previewImgURL: ''
 
             })
         }
     }
-    handleOnChangeImage = (event) => {
+    handleOnChangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
+        let err = false
         if (file) {
-            let objectUrl = URL.createObjectURL(file)
-            this.setState({
-                previewImgURL: objectUrl,
-                avatar: file
-            })
+            //****this code Raw file */
+            // let base64 = await CommonUtils.getBase64(file)
+            // console.log('check base image', base64)
+            let base64 = await CommonUtils.getBase64Low(file)
+                .catch(error => {
+                    alert(error)
+                    err = true
+                })
+            if (!err) {
+
+                console.log('check base image low', base64)
+                let objectUrl = URL.createObjectURL(file)
+                this.setState({
+                    previewImgURL: objectUrl,
+                    avatar: base64
+                })
+            }
         }
     }
     openPreviewImage = () => {
@@ -125,7 +140,7 @@ class UserRedux extends Component {
                 gender: this.state.gender,
                 role: this.state.role,
                 position: this.state.position,
-                // avatar: this.state.avatar
+                avatar: this.state.avatar
             })
         }
         if (action === CRUD_ACTION.EDIT) {
@@ -141,7 +156,7 @@ class UserRedux extends Component {
                 gender: this.state.gender,
                 role: this.state.role,
                 position: this.state.position,
-                // avatar: this.state.avatar
+                avatar: this.state.avatar
             })
         }
 
@@ -185,7 +200,12 @@ class UserRedux extends Component {
         }
     }
     handleEditUserFromParent = (user) => {
-        console.log("chekc hannde edit userfrom paent", user)
+        let imageBase64 = ''
+        if (user.image) {
+            imageBase64 = new Buffer(user.image, 'base64').toString('binary')
+
+        }
+
         this.setState({
             email: user.email,
             password: "***********",
@@ -197,9 +217,10 @@ class UserRedux extends Component {
             position: user.positionId,
             role: user.roleId,
             avatar: '',
+            previewImgURL: imageBase64,
             action: CRUD_ACTION.EDIT,
             userEditId: user.id
-        })
+        }, () => { console.log('check data image', this.state) })
     }
     render() {
         // console.log('check state', this.state)

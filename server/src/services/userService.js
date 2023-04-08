@@ -151,19 +151,36 @@ let updateUserData = (data) => {
                     })
                 }
             }
+            if (data.avatar) {
 
-            await db.User.update({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                address: data.address,
-                phoneNumber: data.phoneNumber,
-                gender: data.gender,
-                roleId: data.role,
-                positionId: data.position,
-            },
-                {
-                    where: { id: data.id }
-                })
+                await db.User.update({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    phoneNumber: data.phoneNumber,
+                    gender: data.gender,
+                    roleId: data.role,
+                    positionId: data.position,
+                    image: data.avatar
+                },
+                    {
+                        where: { id: data.id }
+                    })
+            }
+            else {
+                await db.User.update({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    phoneNumber: data.phoneNumber,
+                    gender: data.gender,
+                    roleId: data.role,
+                    positionId: data.position,
+                },
+                    {
+                        where: { id: data.id }
+                    })
+            }
             resolve({
                 errCode: 0,
                 errMessage: 'Up date user succeeds'
