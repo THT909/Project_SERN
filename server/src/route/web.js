@@ -1,6 +1,7 @@
 import express from "express";
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController"
+import doctorController from "../controllers/doctorController"
 let router = express.Router();
 
 let initWebRouters = (app) => {
@@ -13,14 +14,18 @@ let initWebRouters = (app) => {
     router.get('/edit-crud', homeController.getEditCRUD)
     router.post('/put-crud', homeController.putCRUD)
     router.get('/delete-crud', homeController.deleteCRUD)
-    //this router use for a fontend
+    //this router use for a User
     router.post('/api/login', userController.handleLogin)
     router.get('/api/get-all-user', userController.handleGetAllUser)
     router.post('/api/create-new-user', userController.handleCreateNewUser)
     router.put('/api/edit-user', userController.handleEditUser)
     router.delete('/api/delete-user', userController.handleDeleteUser)
-
+    //call data table allcode to 
     router.get('/api/allcode', userController.getAllCode)
+
+
+    // this router use for  doctor
+    router.get('/api/top-doctor-home', doctorController.getTopDoctorHome)
 
     return app.use("/", router);
 

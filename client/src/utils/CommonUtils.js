@@ -9,7 +9,7 @@ class CommonUtils {
             reader.onerror = error => reject(error)
         })
     }
-    //convert low qualyti to save batabase (range 0.8MB~1MB, do not exceed for file 10mb)
+    //convert low quality to save batabase (range 0.8MB~1MB, do not exceed for file 10mb)
     static getBase64Low(file) {
         return new Promise((resolve, reject) => {
             let reader = new FileReader();

@@ -26,3 +26,6 @@ export const YesNoObj = {
     YES: 'Y',
     NO: 'N'
 }
+export const LIMIT = {
+    TOP_DOCTOR: ""
+}

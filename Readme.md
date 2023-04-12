@@ -1,8 +1,8 @@
 ## Cài đặt các ứng dụng và môi trường
 
-  * cài đặt xampp
-  * cài nvm( cài  node js với v14.17.0)
-  * cài react
+* cài đặt xampp
+* cài nvm( cài  node js với v14.17.0)
+* cài react
 
 ## Clone dự án
 
@@ -20,11 +20,11 @@
   npm init
   npm i 
   ```
-* nếu thấy không folder node_module thì dùng lệnh `npm i express`
+* Nếu thấy không folder node_module thì dùng lệnh `npm i express`
 
 ### Tạo file .ENV config Port
 
-tạo `.env` cho cả  client và server theo mẫu của file `.env.example`
+Tạo `.env` cho cả  client và server theo mẫu của file `.env.example`
 
 ### Tạo database và chay migrate
 
@@ -32,17 +32,17 @@ tạo `.env` cho cả  client và server theo mẫu của file `.env.example`
 
 ##### **Tạo bảng với tên  `project_SERN`**
 
-* use for create table after connet database
+* Use to create table after connet database
 
   ```sh
   npx sequelize-cli db:migrate 
   ```
-* use for create fake database
+* Use to create fake database
 
   ```sh
   npx sequelize-cli db:seed:all 
   ```
-* nếu port 8000 bị sử  dụng dùng lênh sau để kill port( Linux)
+* Nếu port 8000 bị sử  dụng dùng lênh sau để kill port( Linux)
 
   ```sh
   kill $(lsof -t -i:8000) 

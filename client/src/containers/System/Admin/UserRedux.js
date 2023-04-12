@@ -56,21 +56,21 @@ class UserRedux extends Component {
             let arrGender = this.props.genderRedux
             this.setState({
                 genderArr: arrGender,
-                gender: arrGender && arrGender.length > 0 ? arrGender[0].key : ''
+                gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : ''
             })
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
             let arrPosition = this.props.positionRedux
             this.setState({
                 positionArr: arrPosition,
-                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : ''
+                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : ''
             })
         }
         if (prevProps.roleRedux !== this.props.roleRedux) {
             let arrRole = this.props.roleRedux
             this.setState({
                 roleArr: arrRole,
-                role: arrRole && arrRole.length > 0 ? arrRole[0].key : ''
+                role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : ''
             })
         }
         if (prevProps.listUsersRedux !== this.props.listUsersRedux) {
@@ -84,9 +84,9 @@ class UserRedux extends Component {
                 lastName: '',
                 phoneNumber: '',
                 address: '',
-                gender: arrGender && arrGender.length > 0 ? arrGender[0].key : '',
-                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : '',
-                role: arrRole && arrRole.length > 0 ? arrRole[0].key : '',
+                gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : '',
+                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
+                role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
                 avatar: '',
                 action: CRUD_ACTION.CREATE,
                 previewImgURL: ''
@@ -102,6 +102,8 @@ class UserRedux extends Component {
             //****this code Raw file */
             // let base64 = await CommonUtils.getBase64(file)
             // console.log('check base image', base64)
+
+            //*** this code use to encode low quality image */
             let base64 = await CommonUtils.getBase64Low(file)
                 .catch(error => {
                     alert(error)
@@ -147,8 +149,8 @@ class UserRedux extends Component {
             //fire action redux update user
             this.props.updateUserRedux({
                 id: this.state.userEditId,
-                email: this.state.email,
-                password: this.state.password,
+                // email: this.state.email,
+                // password: this.state.password,
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 address: this.state.address,
@@ -200,6 +202,7 @@ class UserRedux extends Component {
         }
     }
     handleEditUserFromParent = (user) => {
+        // decode base64 to image
         let imageBase64 = ''
         if (user.image) {
             imageBase64 = new Buffer(user.image, 'base64').toString('binary')
@@ -318,7 +321,7 @@ class UserRedux extends Component {
                                         {genders && genders.length > 0 &&
                                             genders.map((item, index) => {
                                                 return (
-                                                    <option key={index} value={item.key}>
+                                                    <option key={index} value={item.keyMap}>
                                                         {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                     </option>
                                                 )
@@ -335,7 +338,7 @@ class UserRedux extends Component {
                                         {positions && positions.length > 0 &&
                                             positions.map((item, index) => {
                                                 return (
-                                                    <option key={index} value={item.key}>
+                                                    <option key={index} value={item.keyMap}>
                                                         {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                     </option>
                                                 )
@@ -352,7 +355,7 @@ class UserRedux extends Component {
                                         {roles && roles.length > 0 &&
                                             roles.map((item, index) => {
                                                 return (
-                                                    <option key={index} value={item.key}>
+                                                    <option key={index} value={item.keyMap}>
                                                         {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                     </option>
                                                 )

@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './BestDoctor.scss';
-import Slider1 from "../../../assets/slider/120331-co-xuong-khop.jpg";
-import Slider2 from "../../../assets/slider/120741-tim-mach.jpg";
-import Slider3 from "../../../assets/slider/120933-tieu-hoa.jpg";
-import Slider4 from "../../../assets/slider/121042-than-kinh.jpg";
-import Slider5 from "../../../assets/slider/121146-tai-mui-hong.jpg";
-import Slider6 from "../../../assets/slider/121215-cot-song.jpg";
-import Slider7 from "../../../assets/slider/121232-y-hoc-co-truyen.jpg";
-
+import * as action from '../../../store/actions'
+import { LANGUAGES } from '../../../utils';
 
 
 import Slider from 'react-slick';
 class BestDoctor extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            arrDoctors: [],
+            arrImgDoctor: []
+        }
 
+    }
+    componentDidMount() {
+        this.props.loadTopDoctor()
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+            this.setState({
+
+                arrDoctors: this.props.topDoctorsRedux
+            })
+        }
+    }
     render() {
+        let arrDoctors = this.state.arrDoctors
+        let { language } = this.props
+        arrDoctors = arrDoctors.concat(arrDoctors)
+        console.log('check top doctor', arrDoctors)
         return (
             <div className="section-slider section-bestdoctor">
                 <div className="section-content">
@@ -23,55 +39,29 @@ class BestDoctor extends Component {
                         <button>Tìm kiếm</button>
                     </div>
                     <Slider {...this.props.settings}>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider1} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider2} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider3} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider4} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider5} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider6} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
-                        <div className='slide-customize'>
-                            <div className="border-custom">
-                                <img src={Slider7} alt="" />
-                                <p>Giáo sư tiến sĩ Hiệp Thành</p>
-                                <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
-                            </div>
-                        </div>
+                        {arrDoctors && arrDoctors.length > 0
+                            && arrDoctors.map((item, index) => {
+                                let imageBase64 = ''
+                                if (item.image) {
+                                    if (item.image) {
+                                        imageBase64 = new Buffer(item.image, 'base64').toString('binary')
+
+                                    }
+                                }
+                                let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
+                                let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`
+                                return (
+                                    <div className='slide-customize'>
+                                        <div className="border-custom">
+                                            <img alt="" src={imageBase64} />
+                                            <p>{language === LANGUAGES.VI ? nameVi : nameEn}</p>
+                                            <span>Tim mạch Đây là một đoạn văn bản rất dài, khi hiển thị trên trình duyệt thì nó sẽ tự động xuống dòng để hiển thị đầy đủ nội dung</span>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+
+
                     </Slider>
                 </div>
             </div>
@@ -82,12 +72,15 @@ class BestDoctor extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        language: state.app.language,
+        isLoggedIn: state.user.isLoggedIn,
+        topDoctorsRedux: state.admin.topDoctor
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadTopDoctor: () => dispatch(action.fetchTopDoctor())
     };
 };
 

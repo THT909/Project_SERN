@@ -25,6 +25,9 @@ const editUserService = (data) => {
 const getAllCodeService = (data) => {
     return axios.get(`/api/allcode?type=${data}`)
 }
+const getTopDoctorHome = (limit) => {
+    return axios.get(`api/top-doctor-home?limit=${limit}`)
+}
 export {
     handleLoginApi,
     getAllUsers,
@@ -32,4 +35,5 @@ export {
     deleteUserService,
     editUserService,
     getAllCodeService,
+    getTopDoctorHome,
 };

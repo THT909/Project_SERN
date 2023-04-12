@@ -4,7 +4,9 @@ import {
     createNewUserService,
     deleteUserService,
     editUserService,
+    getTopDoctorHome,
 } from '../../services/userService';
+import { LIMIT } from "../../utils"
 import actionTypes from './actionTypes';
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -184,6 +186,7 @@ export const fetchAllUserStart = () => {
         try {
 
             let res = await getAllUsers('ALL')
+
             if (res && res.errCode === 0) {
                 dispatch(fetchAllUserSuccess(res.users.reverse()));
             } else {
@@ -206,8 +209,31 @@ export const fetchAllUserFailded = () => ({
 })
 
 
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctorHome(LIMIT.TOP_DOCTOR)
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+                    data: res.data
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTOR_FAILDED
+                })
+            }
+        } catch (e) {
+            console.log("FETCH_TOP_DOCTOR_FAILDED", e)
+        }
+    }
+
+}
 
 
 
+
+// let res1 = await getTopDoctorHome(1)
+// console.log("check top doctor", res1)
 
 // start --> doing --> end
