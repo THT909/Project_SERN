@@ -11,7 +11,7 @@
         "support": "support "
     },
     "banner": {
-        "title1": "MEDICAL BACKGROUND",
+        "title1": "MEDICAL PLATFORM",
         "title2": "HOLISTIC HEALTHCARE",
         "placeholderSearch": "Find a specialist",
         "option": {
@@ -56,5 +56,11 @@
         "img": "Avatar",
         "submit": "Save user",
         "edit": "Save change"
+    },
+    "homePage": {
+        "bestDoctor": "Outstanding doctor of the week",
+        "handbook": "Handbook",
+        "more-information": "More",
+        "all-post": "All"
     }
 }

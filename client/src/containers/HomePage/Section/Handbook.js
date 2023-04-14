@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import "./Handbook.scss";
-// import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import Slider from 'react-slick';
 import Slider1 from "../../../assets/slider/120331-co-xuong-khop.jpg";
 import Slider2 from "../../../assets/slider/120741-tim-mach.jpg";
@@ -21,8 +21,8 @@ class Handbook extends Component {
             <div className="section-slider section-handbook">
                 <div className="section-content">
                     <div className="section-header">
-                        <span> Cẩm nang</span>
-                        <button>Tất cả bài viết</button>
+                        <span> <FormattedMessage id="homePage.handbook" /></span>
+                        <button><FormattedMessage id="homePage.all-post" /></button>
                     </div>
                     <Slider {...this.props.settings}>
                         <div className='slide-handbook'>

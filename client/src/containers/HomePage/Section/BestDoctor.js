@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './BestDoctor.scss';
 import * as action from '../../../store/actions'
 import { LANGUAGES } from '../../../utils';
-
+import { FormattedMessage } from 'react-intl';
 
 import Slider from 'react-slick';
 class BestDoctor extends Component {
@@ -29,14 +29,13 @@ class BestDoctor extends Component {
     render() {
         let arrDoctors = this.state.arrDoctors
         let { language } = this.props
-        arrDoctors = arrDoctors.concat(arrDoctors)
         console.log('check top doctor', arrDoctors)
         return (
             <div className="section-slider section-bestdoctor">
                 <div className="section-content">
                     <div className="section-header">
-                        <span>Bác sĩ nổi bật tuần qua</span>
-                        <button>Tìm kiếm</button>
+                        <span><FormattedMessage id="homePage.bestDoctor" /></span>
+                        <button><FormattedMessage id="homePage.more-information" /></button>
                     </div>
                     <Slider {...this.props.settings}>
                         {arrDoctors && arrDoctors.length > 0
@@ -48,8 +47,8 @@ class BestDoctor extends Component {
 
                                     }
                                 }
-                                let nameVi = `${item.positionData.valueVi},${item.lastName} ${item.firstName}`
-                                let nameEn = `${item.positionData.valueEn},${item.firstName} ${item.lastName}`
+                                let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`
+                                let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`
                                 return (
                                     <div className='slide-customize'>
                                         <div className="border-custom">

@@ -56,5 +56,11 @@
         "img": "Ảnh đại điện",
         "submit": "Lưu user",
         "edit": "Lưu thay đổi"
+    },
+    "homePage": {
+        "bestDoctor": "Bác sĩ nổi bật tuần qua",
+        "handbook": "Cẩm nan",
+        "more-information": "Xem thêm",
+        "all-post": "Tất cả bài viết"
     }
 }
