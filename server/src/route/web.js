@@ -24,8 +24,11 @@ let initWebRouters = (app) => {
     router.get('/api/allcode', userController.getAllCode)
 
 
+
     // this router use for  doctor
     router.get('/api/top-doctor-home', doctorController.getTopDoctorHome)
+    router.get('/api/get-all-doctor', doctorController.getAllDoctor)
+    router.post('/api/save-infor-doctor', doctorController.postInforDoctor)
 
     return app.use("/", router);
 

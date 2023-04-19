@@ -1,7 +1,5 @@
 'use strict';
-const {
-    Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Markdown extends Model {
         /**
@@ -16,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     Markdown.init({
         // id: DataTypes.INTEGER,
         contentHTML: DataTypes.TEXT('long'),
-        contentMarkDown: DataTypes.TEXT('long'),
+        contentMarkdown: DataTypes.TEXT('long'),
         description: DataTypes.TEXT('long'),
         doctorId: DataTypes.INTEGER,
         specialtyId: DataTypes.INTEGER,

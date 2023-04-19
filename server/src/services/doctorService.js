@@ -26,6 +26,56 @@ let getTopDoctorHome = (limit) => {
         }
     })
 }
+let getAllDoctor = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.User.findAll({
+                where: { roleId: 'R2' },
+                attributes: {
+                    exclude: ['password', 'image']
+                },
+            })
+            resolve({
+                errCode: 0,
+                errMessage: "Success",
+                data
+
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+
+}
+
+let saveDetailInforDoctor = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!data.doctorId || !data.contentHTML || !data.contentMarkdown) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Mising paremeter'
+                })
+            } else {
+                await db.Markdown.create({
+                    contentHTML: data.contentHTML,
+                    contentMarkdown: data.contentMarkdown,
+                    description: data.description,
+                    doctorId: data.doctorId
+                })
+                resolve({
+                    errCode: 0,
+                    errMessage: "OK"
+                })
+            }
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
+    getAllDoctor: getAllDoctor,
+    saveDetailInforDoctor: saveDetailInforDoctor,
 }

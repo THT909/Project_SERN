@@ -1,5 +1,6 @@
 import { json } from 'body-parser';
 import doctorService from '../services/doctorService'
+
 let getTopDoctorHome = async (req, res) => {
     let limit = req.query.limit
     if (!limit) limit = 10;
@@ -14,7 +15,34 @@ let getTopDoctorHome = async (req, res) => {
         })
     }
 }
+
+let getAllDoctor = async (req, res) => {
+    try {
+        let doctor = await doctorService.getAllDoctor();
+        return res.status(200).json(doctor)
+    } catch (e) {
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'error from server'
+        })
+    }
+}
+
+let postInforDoctor = async (req, res) => {
+    try {
+        let response = await doctorService.saveDetailInforDoctor(req.body)
+        return res.status(200).json({ response })
+    } catch (error) {
+        return res.status(200).json({
+            errCode: -1,
+            errMessage: 'error from server'
+        })
+    }
+}
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
+    getAllDoctor: getAllDoctor,
+    postInforDoctor: postInforDoctor,
 
 }
