@@ -17,10 +17,12 @@ export const adminMenu = [
                 // ]
             },
             // { name: 'menu.system.system-parameter.header', link: '/system/system-parameter' },
+            // {
+            //     name: 'menu.admin.manage-admin', link: '/system/user-admin'
+            // }
             {
-                name: 'menu.admin.manage-admin', link: '/system/user-admin'
-            }
-
+                name: 'menu.doctor.scheduale', link: '/doctor/manage-schedule'
+            },
         ]
     },
 
@@ -49,11 +51,16 @@ export const adminMenu = [
         ]
     },
 ];
-/*
-*   *****template*****
-*   name:
-*       menu:(dropdown)
-*           name:
-*            submenu:(dropdown menu)
-8               name:
-*/
+export const docotrMenu = [
+    {
+        //Quản kế hoạch kánh bệnh 
+        name: 'menu.doctor.manage-schedule',
+        menus: [
+            {
+                name: 'menu.doctor.scheduale', link: '/doctor/manage-schedule'
+            },
+
+        ]
+    }
+
+];

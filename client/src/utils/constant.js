@@ -4,7 +4,8 @@ export const path = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system',
-    DETAIL_DOCTOR: '/detail-doctor/:id'
+    DETAIL_DOCTOR: '/detail-doctor/:id',
+    DOCTOR: '/doctor'
 };
 
 export const LANGUAGES = {
@@ -29,4 +30,9 @@ export const YesNoObj = {
 }
 export const LIMIT = {
     TOP_DOCTOR: ""
+}
+export const USER_ROLE = {
+    ADMIN: 'R1',
+    DOCTOR: 'R2',
+    PATIENT: 'R3',
 }
