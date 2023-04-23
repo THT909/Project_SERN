@@ -237,8 +237,7 @@ class UserRedux extends Component {
         // console.log('check redux component positon:', this.state.positionArr)
         let { email, password, firstName,
             lastName, phoneNumber, address,
-            gender, position, role,
-            //avatar
+            gender, position, role, avatar
         } = this.state
         return (
             <div className="user-redux-container">
@@ -368,6 +367,7 @@ class UserRedux extends Component {
                                     <div className="">
 
                                         <input
+                                            value={avatar}
                                             className='form-control'
                                             id='previewImg'
                                             type="file"

@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png"
 import { FormattedMessage } from 'react-intl'
 import { LANGUAGES } from "../../utils/constant"
 import { changeLanguageApp } from '../../store/actions';
-
+import { withRouter } from 'react-router';
 
 class HomeHeader extends Component {
 
@@ -13,7 +13,9 @@ class HomeHeader extends Component {
         this.props.changeLanguageAppRedux(language)
     }
 
-
+    returnToHome = () => {
+        this.props.history.push(`/home`)
+    }
 
 
 
@@ -26,7 +28,9 @@ class HomeHeader extends Component {
                     <div className="home-header-content">
                         <div className="left-content">
                             <i className="fas fa-bars"></i>
-                            <img src={logo} alt="" />
+                            <img
+                                onClick={() => this.returnToHome()}
+                                src={logo} alt="" />
                         </div>
 
                         <div className="center-content">
@@ -65,108 +69,110 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="home-header-banner">
-                    <div className="content-up">
-                        <div className="title"><FormattedMessage id='banner.title1' ></FormattedMessage></div>
-                        <div className="title-sub"><FormattedMessage id='banner.title2' ></FormattedMessage></div>
-                        <div className="search">
-                            <i className='fas fa-search'></i>
-                            <input type="text" name="" id="" placeholder='Tìm chuyên khoa khám bệnh' />
+                {this.props.isShowBanner === true &&
+                    <div className="home-header-banner">
+                        <div className="content-up">
+                            <div className="title"><FormattedMessage id='banner.title1' ></FormattedMessage></div>
+                            <div className="title-sub"><FormattedMessage id='banner.title2' ></FormattedMessage></div>
+                            <div className="search">
+                                <i className='fas fa-search'></i>
+                                <input type="text" name="" id="" placeholder='Tìm chuyên khoa khám bệnh' />
+                            </div>
+                        </div>
+                        <div className="content-down">
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img1"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub1' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img2"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub2' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img3"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub3' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img4"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub4' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img5"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub5' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img6"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub6' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img7"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub7' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img8"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub8' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="option">
+                                <div className="option-child">
+                                    <div className="icon-child ">
+                                        <div className="img-option img9"></div>
+                                    </div>
+                                    <div className="text-child">
+                                        <FormattedMessage id='banner.option.sub9' ></FormattedMessage>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="content-down">
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img1"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub1' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img2"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub2' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img3"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub3' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img4"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub4' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img5"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub5' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img6"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub6' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img7"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub7' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img8"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub8' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="option">
-                            <div className="option-child">
-                                <div className="icon-child ">
-                                    <div className="img-option img9"></div>
-                                </div>
-                                <div className="text-child">
-                                    <FormattedMessage id='banner.option.sub9' ></FormattedMessage>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </React.Fragment>
         )
     }
@@ -186,4 +192,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeHeader));

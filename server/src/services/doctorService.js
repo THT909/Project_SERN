@@ -51,18 +51,33 @@ let getAllDoctor = () => {
 let saveDetailInforDoctor = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.doctorId || !data.contentHTML || !data.contentMarkdown) {
+            if (!data.doctorId || !data.contentHTML || !data.contentMarkdown || !data.action) {
                 resolve({
                     errCode: 1,
                     errMessage: 'Mising paremeter'
                 })
             } else {
-                await db.Markdown.create({
-                    contentHTML: data.contentHTML,
-                    contentMarkdown: data.contentMarkdown,
-                    description: data.description,
-                    doctorId: data.doctorId
-                })
+                if (data.action === "CREATE") {
+
+                    await db.Markdown.create({
+                        contentHTML: data.contentHTML,
+                        contentMarkdown: data.contentMarkdown,
+                        description: data.description,
+                        doctorId: data.doctorId
+                    })
+                }
+                else if (data.action === "EDIT") {
+                    await db.Markdown.update({
+                        contentHTML: data.contentHTML,
+                        contentMarkdown: data.contentMarkdown,
+                        description: data.description,
+                    }
+                        ,
+                        {
+                            where: { doctorId: data.doctorId }
+                        }
+                    )
+                }
                 resolve({
                     errCode: 0,
                     errMessage: "OK"
@@ -74,8 +89,52 @@ let saveDetailInforDoctor = (data) => {
         }
     })
 }
+let getDetailDoctorById = (inputId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!inputId) {
+                resolve({
+                    errCode: 1,
+                    errMessage: "Missing requied parameter"
+                })
+            } else {
+                let data = await db.User.findOne({
+                    where: {
+                        id: inputId
+                    },
+                    attributes: {
+                        exclude: ['password']
+                    },
+                    include: [
+                        {
+                            model: db.Markdown,
+                            attributes: ['description', 'contentHTML', 'contentMarkdown'],
+                        },
+                        { model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi'] },
+                    ],
+                    raw: false,
+                    nest: true,
+                })
+                if (data && data.image) {
+                    data.image = new Buffer(data.image, 'base64').toString('binary')
+                }
+                if (!data) { data = {} }
+                resolve({
+                    errCode: 0,
+                    errMessage: 'OK',
+                    data: data
+                })
+            }
+
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
     getAllDoctor: getAllDoctor,
     saveDetailInforDoctor: saveDetailInforDoctor,
+    getDetailDoctorById: getDetailDoctorById
 }

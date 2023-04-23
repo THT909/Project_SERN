@@ -4,6 +4,7 @@ import './BestDoctor.scss';
 import * as action from '../../../store/actions'
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
 
 import Slider from 'react-slick';
 class BestDoctor extends Component {
@@ -26,10 +27,12 @@ class BestDoctor extends Component {
             })
         }
     }
+    handleViewDetailDoctor = (id) => {
+        this.props.history.push(`/detail-doctor/${id}`)
+    }
     render() {
         let arrDoctors = this.state.arrDoctors
         let { language } = this.props
-        console.log('check top doctor', arrDoctors)
         return (
             <div className="section-slider section-bestdoctor">
                 <div className="section-content">
@@ -50,7 +53,9 @@ class BestDoctor extends Component {
                                 let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`
                                 let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`
                                 return (
-                                    <div className='slide-customize'>
+                                    <div className='slide-customize'
+                                        onClick={() => this.handleViewDetailDoctor(item.id)}
+                                    >
                                         <div className="border-custom">
                                             <img alt="" src={imageBase64} />
                                             <p>{language === LANGUAGES.VI ? nameVi : nameEn}</p>
@@ -83,4 +88,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BestDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BestDoctor));

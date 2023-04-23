@@ -48,7 +48,7 @@ class HomePage extends Component {
         return (
             <div>
 
-                <HomeHeader />
+                <HomeHeader isShowBanner={true} />
                 {/* css for sections  in HomePage.scss  */}
                 <Specialty settings={settings1} />
                 <MedicalFacility settings={settings1} />

@@ -1,0 +1,47 @@
+.doctor-detai-container {
+
+    padding: 100px 0;
+
+    .intro-doctor {
+        padding: 20px 8%;
+        display: flex;
+
+        .intro-image {
+            width        : 120px;
+            height       : 120px;
+            border-radius: 50%;
+            margin       : 20px;
+        }
+
+        .intro-description {
+            width: 80%;
+
+            display       : flex;
+            flex-direction: column;
+
+            .up {
+                font-size     : 20px;
+                font-weight   : 600;
+                text-transform: uppercase;
+            }
+
+            .down {
+                padding-top: 10px;
+            }
+        }
+    }
+
+    // .calender-doctor {}
+
+    .detail-doctor {
+        hr {
+            margin: none;
+        }
+
+        padding         : 1px 8%;
+        background-color: #f9f9f9;
+
+    }
+
+    // .comment-doctor {}
+}

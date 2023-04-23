@@ -36,6 +36,7 @@
                 width      : 45px;
                 height     : 45px;
                 margin-left: 5px;
+                cursor     : pointer;
             }
         }
 
@@ -57,7 +58,6 @@
         }
 
         .right-content {
-            cursor            : pointer;
             width             : 25%;
             // border         : 1px solid red;
             display           : flex;
@@ -65,11 +65,13 @@
             justify-content   : right;
 
             i {
+                cursor      : pointer;
                 color       : $colormain;
                 margin-right: 2px;
             }
 
             .flag {
+                cursor     : pointer;
                 margin-left: 10px;
                 opacity    : 0.5;
 
