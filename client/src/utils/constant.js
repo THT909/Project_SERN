@@ -36,3 +36,10 @@ export const USER_ROLE = {
     DOCTOR: 'R2',
     PATIENT: 'R3',
 }
+export const ALLCODE_TYPE = {
+    ROLE: 'ROLE',
+    POSITION: 'POSITION',
+    GENDER: 'GENDER',
+    TIME: 'TIME',
+    STATUS: 'STATUS'
+}

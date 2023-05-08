@@ -8,7 +8,7 @@ import {
     getAllDoctor,
     saveDetailDoctorService
 } from '../../services/userService';
-import { LIMIT } from "../../utils"
+import { LIMIT, ALLCODE_TYPE } from "../../utils"
 import actionTypes from './actionTypes';
 import { toast } from 'react-toastify';
 // export const fetchGenderStart = () => ({
@@ -24,7 +24,7 @@ export const fetchGenderStart = () => {
             dispatch({
                 type: actionTypes.FETCH_GENDER_START
             })
-            let res = await getAllCodeService('GENDER')
+            let res = await getAllCodeService(ALLCODE_TYPE.GENDER)
             if (res && res.errCode === 0) {
                 dispatch(fetchGenderSuccess(res.data));
             } else {
@@ -50,7 +50,7 @@ export const fetchPositionStart = () => {
 
         try {
 
-            let res = await getAllCodeService('POSITION')
+            let res = await getAllCodeService(ALLCODE_TYPE.POSITION)
             if (res && res.errCode === 0) {
                 dispatch(fetchPositionSuccess(res.data));
             } else {
@@ -75,7 +75,7 @@ export const fetchRoleStart = () => {
 
         try {
 
-            let res = await getAllCodeService('ROLE')
+            let res = await getAllCodeService(ALLCODE_TYPE.ROLE)
             if (res && res.errCode === 0) {
                 dispatch(fetchRoleSuccess(res.data));
             } else {
@@ -284,7 +284,29 @@ export const saveInfoDoctor = (data) => {
 
 }
 
+export const fetchAllScheduleTime = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllCodeService("TIME")
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.SAVE_ALLCODE_SCHEDULE_TIME_SUCCESS,
+                    data: res.data
+                });
+            } else {
+                dispatch({
+                    type: actionTypes.SAVE_ALLCODE_SCHEDULE_TIME_FAILDED
+                })
+            }
+        } catch (e) {
+            console.log("SAVE_ALLCODE_SCHEDULE_TIME_FAILDED", e)
+            dispatch({
+                type: actionTypes.SAVE_ALLCODE_SCHEDULE_TIME_FAILDED
+            })
+        }
+    }
 
+}
 
 
 // let res1 = await getTopDoctorHome(1)

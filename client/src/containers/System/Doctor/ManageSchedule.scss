@@ -1,0 +1,35 @@
+@import "../../../styles/common.scss";
+
+
+.manager-schedule-container {
+    .pick-hour-container {
+        padding-top   : 20px;
+        padding-bottom: 20px;
+        flex-wrap     : wrap;
+        display       : flex;
+        gap           : 20px;
+        grid-gap      : 20px;
+    }
+
+    button {
+        padding: 5px 15px;
+    }
+
+    .btn-hour {
+        background-color: #f9f9f9;
+        border-color    : black;
+    }
+
+    .btn-save {
+        background-color: $colormain;
+        color           : #ffff;
+    }
+
+    .active {
+        background-color: $colormain;
+        border          : #666666;
+        opacity         : 1;
+    }
+
+
+}
