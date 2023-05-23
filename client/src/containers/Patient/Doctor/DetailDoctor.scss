@@ -1,3 +1,9 @@
+@import "../../../styles/common.scss";
+
+.home-header-container-hide {
+    background-color: $colormain;
+}
+
 .doctor-detai-container {
 
     padding: 100px 0;
@@ -31,7 +37,16 @@
         }
     }
 
-    // .calender-doctor {}
+    .calender-doctor {
+        margin    : 0 100px;
+        display   : flex;
+        height    : 200px;
+        // border : 1px solid red;
+
+        .content-left {
+            width: 60%;
+        }
+    }
 
     .detail-doctor {
         hr {

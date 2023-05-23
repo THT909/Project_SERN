@@ -1,5 +1,17 @@
 @import "../../styles/common.scss";
 
+.home-header-container-hide {
+    background-color: $colormain !important;
+    color           : white;
+
+    .right-content {
+
+        i {
+            color: white !important;
+        }
+    }
+}
+
 .home-header-container {
     height          : 60px;
     width           : 100%;
@@ -82,7 +94,7 @@
 
 
             .active {
-                color  : $colormain;
+                color  : black;
                 opacity: 1;
             }
 

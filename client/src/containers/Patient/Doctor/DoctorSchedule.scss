@@ -1,0 +1,34 @@
+@import "../../../styles/common.scss";
+
+.doctor-schedule-container {
+    .all-schedule {
+        select {
+            background-color: #f2f2f2;
+            color           : #333333;
+            font-family     : Arial, sans-serif;
+            font-size       : 14px;
+            border          : 1px solid #cccccc;
+            padding         : 5px;
+            margin-bottom   : 10px;
+
+            option {
+                background-color: #f2f2f2;
+                color           : #333333;
+                height          : 30px;
+                border          : 1px solid #cccccc;
+                padding         : 5px;
+                margin-bottom   : 5px;
+
+                &:hover {
+                    border-color: $colormain;
+                }
+
+                &:checked {
+                    background-color: $colormain;
+                    color           : #ffffff;
+                }
+            }
+        }
+
+    }
+}

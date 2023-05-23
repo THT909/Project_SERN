@@ -24,7 +24,7 @@ class HomeHeader extends Component {
         let language = this.props.language;
         return (
             <React.Fragment>
-                <div className="home-header-container">
+                <div className={this.props.isShowBanner ? "home-header-container" : "home-header-container home-header-container-hide "}>
                     <div className="home-header-content">
                         <div className="left-content">
                             <i className="fas fa-bars"></i>
