@@ -10,6 +10,7 @@
             border          : 1px solid #cccccc;
             padding         : 5px;
             margin-bottom   : 10px;
+            text-transform  : capitalize;
 
             option {
                 background-color: #f2f2f2;
@@ -17,6 +18,7 @@
                 height          : 30px;
                 border          : 1px solid #cccccc;
                 padding         : 5px;
+                cursor          : pointer;
                 margin-bottom   : 5px;
 
                 &:hover {
@@ -30,5 +32,49 @@
             }
         }
 
+    }
+
+    .all-available-time {
+        .text-content {
+            margin: 10px 0;
+            color : #333;
+
+            span {
+                text-transform: uppercase;
+                margin-left   : 5px;
+            }
+        }
+
+        .time-content {
+            display  : flex;
+            gap      : 15px;
+            flex-wrap: wrap;
+
+            .time-content-btns {
+                display  : flex;
+                gap      : 15px;
+                flex-wrap: wrap;
+
+                button {
+                    padding         : 8px;
+                    border          : none;
+                    outline         : none;
+                    background-color: $colormain;
+                    min-width       : 120px;
+                    border-radius   : 3px;
+                    font-weight     : 600;
+                    color           : white;
+
+                    &:hover {
+                        background-color: #fff04b;
+                        color           : #333;
+                    }
+                }
+
+                .book-free {
+                    margin-top: 10px;
+                }
+            }
+        }
     }
 }

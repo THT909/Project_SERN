@@ -3,34 +3,94 @@ import db from '../models/index'
 require('dotenv').config();
 import _, { reject } from 'lodash'
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE
+//******* This function err when using nest:true data duplicate **********//
+// let getTopDoctorHome = (limit) => {
+//     return new Promise(async (resolve, reject) => {
+//         try {
+//             let user = await db.User.findAll({
+//                 limit: limit,
+//                 order: [['createdAt', 'DESC']],
+//                 attributes: {
+//                     exclude: ['password']
+//                 },
+//                 where: { roleId: 'R2' },
+//                 include: [
+//                     { model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi'] },
+//                     { model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi'] }
+//                 ],
+//                 raw: true,
+//                 nest: true,
+//             })
+//             resolve({
+//                 errCode: 0,
+//                 data: user,
+//                 errMessage: ''
+//             })
+//         } catch (e) {
+//             reject(e)
+//         }
+//     })
+// }
 
 let getTopDoctorHome = (limit) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let user = await db.User.findAll({
+            let users = await db.User.findAll({
                 limit: limit,
                 order: [['createdAt', 'DESC']],
                 attributes: {
                     exclude: ['password']
                 },
                 where: { roleId: 'R2' },
-                include: [
-                    { model: db.Allcode, as: 'positionData', attributes: ['valueEn', 'valueVi'] },
-                    { model: db.Allcode, as: 'genderData', attributes: ['valueEn', 'valueVi'] }
-                ],
-                raw: true,
-                nest: true,
-            })
+            });
+
+            let userData = [];
+
+            for (let i = 0; i < users.length; i++) {
+                let user = users[i];
+
+                let positionData = await db.Allcode.findOne({
+                    where: { keyMap: user.positionId },
+                    attributes: ['valueEn', 'valueVi']
+                });
+
+                let genderData = await db.Allcode.findOne({
+                    where: { keyMap: user.gender },
+                    attributes: ['valueEn', 'valueVi']
+                });
+
+                userData.push({
+                    id: user.id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    address: user.address,
+                    phoneNumber: user.phoneNumber,
+                    gender: user.gender,
+                    image: user.image,
+                    roleId: user.roleId,
+                    positionId: user.positionId,
+                    positionData: positionData,
+                    genderData: genderData
+                });
+            }
+
             resolve({
                 errCode: 0,
-                data: user,
+                data: userData,
                 errMessage: ''
-            })
+            });
         } catch (e) {
-            reject(e)
+            reject(e);
         }
-    })
-}
+    });
+};
+
+
+
+
+
+
 let getAllDoctor = () => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -218,7 +278,7 @@ let getScheduleByDate = (doctorId, date) => {
                 if (!dataSchedule) dataSchedule = []
                 resolve({
                     errCode: 0,
-                    data: dataSchedule
+                    dataSchedule
                 })
             }
         } catch (e) {
