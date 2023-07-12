@@ -80,5 +80,14 @@
             "choose": "Choose ",
             "book-free": " and book (free)"
         }
+    },
+    "admin": {
+        "manager-doctor": {
+            "title": "Information doctor",
+            "select-doctor": "Choose doctor ",
+            "intro": "Introduction information",
+            "add": "Add information ",
+            "save": "Save information"
+        }
     }
 }
