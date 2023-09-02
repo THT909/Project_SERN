@@ -1,7 +1,8 @@
 import db from '../models/index'
 
 require('dotenv').config();
-import _, { reject } from 'lodash'
+import _ from 'lodash'
+import { where } from 'sequelize';
 const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE
 //******* This function err when using nest:true data duplicate **********//
 // let getTopDoctorHome = (limit) => {
@@ -116,14 +117,25 @@ let getAllDoctor = () => {
 let saveDetailInforDoctor = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.doctorId || !data.contentHTML || !data.contentMarkdown || !data.action) {
+            if (
+                !data.doctorId
+                || !data.contentHTML
+                || !data.contentMarkdown
+                || !data.action
+                || !data.selectedPrice
+                || !data.selectedPayment
+                || !data.selectedProvince
+                || !data.addressClinic
+                || !data.nameClinic
+            ) {
                 resolve({
                     errCode: 1,
                     errMessage: 'Mising paremeter'
                 })
             } else {
-                if (data.action === "CREATE") {
+                // upset to Markdown
 
+                if (data.action === "CREATE") {
                     await db.Markdown.create({
                         contentHTML: data.contentHTML,
                         contentMarkdown: data.contentMarkdown,
@@ -136,6 +148,7 @@ let saveDetailInforDoctor = (data) => {
                         contentHTML: data.contentHTML,
                         contentMarkdown: data.contentMarkdown,
                         description: data.description,
+                        updateAt: new Date()
                     }
                         ,
                         {
@@ -143,6 +156,40 @@ let saveDetailInforDoctor = (data) => {
                         }
                     )
                 }
+
+                //*********************HERE ????*********************************// 
+
+
+
+                if (data.action === "CREATE") {
+                    await db.Doctor_infor.create({
+                        doctorId: data.doctorId,
+                        priceId: data.selectedPrice,
+                        provinceId: data.selectedProvince,
+                        paymentId: data.selectedPayment,
+                        addressClinic: data.addressClinic,
+                        nameClinic: data.nameClinic,
+                        note: data.note,
+
+                    })
+                }
+                else if (data.action === "EDIT") {
+                    await db.Doctor_infor.update({
+                        priceId: data.selectedPrice,
+                        provinceId: data.selectedProvince,
+                        paymentId: data.selectedPayment,
+                        addressClinic: data.addressClinic,
+                        nameClinic: data.nameClinic,
+                        note: data.note,
+                        updateAt: new Date()
+                    }, {
+
+                        where: { doctorId: data.doctorId }
+                    }
+                    )
+
+                }
+                //***************here************8 */
                 resolve({
                     errCode: 0,
                     errMessage: "OK"
@@ -199,9 +246,6 @@ let getDetailDoctorById = (inputId) => {
 }
 let bulkCreateSchedule = (data) => {
     return new Promise(async (resolve, reject) => {
-        console.log(
-            'check data', data
-        );
         if (!data.arrSchedule || !data.doctorId || !data.formatedDate) {
             resolve({
                 errCode: 1,
@@ -219,7 +263,7 @@ let bulkCreateSchedule = (data) => {
                     })
 
                 }
-                console.log('hello bulk', schedule)
+
 
                 let existing = await db.Schedule.findAll(
                     {
@@ -233,10 +277,7 @@ let bulkCreateSchedule = (data) => {
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
                     return a.timeType === b.timeType && +a.date === +b.date
                 })
-                console.log('==================================');
-                console.log(toCreate);
-                console.log('==================================');
-                //create data
+
                 if (toCreate && toCreate.length > 0) {
                     await db.Schedule.bulkCreate(toCreate)
                 }
