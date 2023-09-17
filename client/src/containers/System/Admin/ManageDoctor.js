@@ -140,16 +140,51 @@ class ManageDoctor extends Component {
             note: this.state.note
         })
     }
+
+
     handleChangeSelect = async (selectedDoctor) => {
         this.setState({ selectedDoctor });
+        let { listPrice, listProvince, listPayment } = this.state
+
         let res = await getDetailDoctorService(selectedDoctor.value)
         if (res && res.errCode === 0 && res.data && res.data.Markdown) {
             let markdown = res.data.Markdown
+
+            let addressClinic = '', nameClinic = '', note = '', paymentId = '', priceId = '', provinceId = '',
+                selectedPayment = '', selectedPrice = '', selectedProvince = ''
+            if (res.data.Doctor_infor) {
+
+                addressClinic = res.data.Doctor_infor.addressClinic
+                nameClinic = res.data.Doctor_infor.nameClinic
+                note = res.data.Doctor_infor.note
+                paymentId = res.data.Doctor_infor.paymentId
+                priceId = res.data.Doctor_infor.priceId
+                provinceId = res.data.Doctor_infor.provinceId
+
+                selectedPayment = listPayment.find(item => {
+                    return item && item.value === paymentId
+                })
+                selectedPrice = listPrice.find(item => {
+                    return item && item.value === priceId
+                })
+                selectedProvince = listProvince.find(item => {
+                    return item && item.value === provinceId
+                })
+
+            }
+
+
             this.setState({
                 contentMarkdown: markdown.contentMarkdown,
                 contentHTML: markdown.contentHTML,
                 description: markdown.description,
-                hasOldData: true
+                addressClinic: addressClinic,
+                nameClinic: nameClinic,
+                note: note,
+                selectedPayment: selectedPayment,
+                selectedPrice: selectedPrice,
+                selectedProvince: selectedProvince,
+                hasOldData: true,
             })
         }
         else {
@@ -157,7 +192,11 @@ class ManageDoctor extends Component {
                 contentMarkdown: '',
                 contentHTML: '',
                 description: '',
-                hasOldData: false
+                addressClinic: '',
+                nameClinic: '',
+                note: '',
+                hasOldData: false,
+
             })
         }
         console.log(`Option check res:`, res)
@@ -246,18 +285,21 @@ class ManageDoctor extends Component {
                             <label htmlFor=""><FormattedMessage id="admin.manager-doctor.nameClinic"></FormattedMessage></label>
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeDesc(event, "nameClinic")}
+                                value={this.state.nameClinic}
                             />
                         </div>
                         <div className="col-4 form-group">
                             <label htmlFor=""><FormattedMessage id="admin.manager-doctor.addressClinic"></FormattedMessage></label>
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeDesc(event, "addressClinic")}
+                                value={this.state.addressClinic}
                             />
                         </div>
                         <div className="col-4 form-group">
                             <label htmlFor=""><FormattedMessage id="admin.manager-doctor.note"></FormattedMessage></label>
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeDesc(event, "note")}
+                                value={this.state.note}
                             />
                         </div>
                     </div>

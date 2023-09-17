@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
       //rela
       User.hasOne(models.Markdown, { foreignKey: 'doctorId' })
+      User.hasOne(models.Doctor_infor, { foreignKey: 'doctorId' })
     }
   };
   User.init({
@@ -28,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     image: DataTypes.STRING,
     roleId: DataTypes.STRING,
+
     positionId: DataTypes.STRING,
   }, {
     sequelize,
