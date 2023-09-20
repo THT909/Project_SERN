@@ -8,18 +8,18 @@
 
         .text-address {
             text-transform: uppercase;
-            color         : #333;
+            color: #333;
         }
 
         .name-clinic {
-            padding    : 5px 0;
+            padding: 5px 0;
             font-weight: 600;
-            color      : #333;
+            color: #333;
         }
 
         .detail-address {
             font-weight: 600;
-            color      : #333;
+            color: #333;
         }
     }
 
@@ -27,8 +27,11 @@
         .short-infor {
             span {
                 padding-left: 3px;
-                cursor      : pointer;
-                color       : $colormain;
+                cursor: pointer;
+                color: $colormain;
+            }
+            .currency {
+                margin: 0 5px;
             }
         }
 
@@ -37,23 +40,23 @@
         }
 
         .detail-infor {
-            border          : 1px solid#ddd;
-            padding         : 5px;
+            border: 1px solid#ddd;
+            padding: 5px;
             background-color: #f8f8f8;
 
             .price {
-                padding-bottom : 5px;
-                display        : flex;
+                padding-bottom: 5px;
+                display: flex;
                 justify-content: space-between;
             }
 
-            .note {}
+            .note {
+            }
 
             .payment {
-                border          : 1px solid#ddd;
-                padding         : 5px;
+                border: 1px solid#ddd;
+                padding: 5px;
                 background-color: #eee;
-
             }
 
             .hide-price {
@@ -61,11 +64,9 @@
 
                 span {
                     cursor: pointer;
-                    color : $colormain;
+                    color: $colormain;
                 }
             }
         }
     }
-
-
 }
