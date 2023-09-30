@@ -1,46 +1,43 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import HomeHeader from '../../HomePage/HomeHeader';
-import './DetailDoctor.scss'
-import { getDetailDoctorService } from '../../../services/userService'
+import './DetailDoctor.scss';
+import { getDetailDoctorService } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfor from './DoctorExtraInfor';
 class DetailDoctor extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
             detailDoctor: {},
-            currentDoctorId: -1
-        }
+            currentDoctorId: -1,
+        };
     }
 
     async componentDidMount() {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
-            let id = this.props.match.params.id
+            let id = this.props.match.params.id;
             this.setState({
-                currentDoctorId: id
-            })
-            let res = await getDetailDoctorService(id)
+                currentDoctorId: id,
+            });
+            let res = await getDetailDoctorService(id);
             if (res && res.errCode === 0) {
                 this.setState({
-                    detailDoctor: res.data
-                })
+                    detailDoctor: res.data,
+                });
             }
             // imageBase64 = new Buffer(user.image, 'base64').toString('binary')
         }
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-    }
+    componentDidUpdate(prevProps, prevState, snapshot) {}
     render() {
-        let { detailDoctor } = this.state
-        let { language } = this.props
-        let nameVi, nameEn
+        let { detailDoctor } = this.state;
+        let { language } = this.props;
+        let nameVi, nameEn;
         if (detailDoctor && detailDoctor.positionData) {
-            nameVi = `${detailDoctor.positionData.valueVi} ${detailDoctor.lastName} ${detailDoctor.firstName}`
-            nameEn = `${detailDoctor.positionData.valueEn} ${detailDoctor.firstName} ${detailDoctor.lastName}`
+            nameVi = `${detailDoctor.positionData.valueVi} ${detailDoctor.lastName} ${detailDoctor.firstName}`;
+            nameEn = `${detailDoctor.positionData.valueEn} ${detailDoctor.firstName} ${detailDoctor.lastName}`;
         }
 
         return (
@@ -49,71 +46,67 @@ class DetailDoctor extends Component {
 
                 <div className="doctor-detai-container">
                     <div className="intro-doctor">
-                        <div className="intro-image"
+                        <div
+                            className="intro-image"
                             style={{
                                 // "height": "50px",
-                                "backgroundImage": `url(${detailDoctor && detailDoctor.image ? detailDoctor.image : ''})`,
-                                "backgroundRepeat": "no-repeat",
-                                "backgroundSize": "cover",
-                                "backgroundPosition": "center",
-                                "cursor": "pointer",
+                                backgroundImage: `url(${
+                                    detailDoctor && detailDoctor.image ? detailDoctor.image : ''
+                                })`,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                cursor: 'pointer',
                             }}
-                        >
-
-                        </div>
+                        ></div>
                         <div className="intro-description">
-                            <div className="up">
-                                {language === LANGUAGES.VI ? nameVi : nameEn}
-                            </div>
+                            <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                             <div className="down">
-                                {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.description
-                                    && <span>
-                                        {detailDoctor.Markdown.description}
-                                    </span>
-
-                                }</div>
+                                {detailDoctor &&
+                                    detailDoctor.Markdown &&
+                                    detailDoctor.Markdown.description && (
+                                        <span>{detailDoctor.Markdown.description}</span>
+                                    )}
+                            </div>
                         </div>
                     </div>
                     <div className="calender-doctor">
                         <div className="content-left">
-                            <DoctorSchedule
-                                doctorIdFromParent={this.state.currentDoctorId}
-                            />
+                            <DoctorSchedule doctorIdFromParent={this.state.currentDoctorId} />
                         </div>
                         <div className="content-right">
-                            <DoctorExtraInfor doctorIdFromParent={this.state.currentDoctorId}></DoctorExtraInfor>
+                            <DoctorExtraInfor
+                                doctorIdFromParent={this.state.currentDoctorId}
+                            ></DoctorExtraInfor>
                         </div>
                     </div>
                     <div className="detail-doctor">
                         <hr />
-                        {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML &&
-                            <div
-                                dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}
-                            >
-
-                            </div>
-                        }
+                        {detailDoctor &&
+                            detailDoctor.Markdown &&
+                            detailDoctor.Markdown.contentHTML && (
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: detailDoctor.Markdown.contentHTML,
+                                    }}
+                                ></div>
+                            )}
                     </div>
-                    <div className="comment-doctor">
-
-                    </div>
+                    <div className="comment-doctor"></div>
                 </div>
-
-
             </>
         );
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         language: state.app.language,
     };
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-    };
+const mapDispatchToProps = (dispatch) => {
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailDoctor);

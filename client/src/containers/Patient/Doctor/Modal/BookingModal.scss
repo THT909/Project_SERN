@@ -1,0 +1,25 @@
+.booking-modal-container {
+    .booking-modal-content {
+        padding: 0 10px;
+        .booking-modal-header {
+            padding: 10px 10px 0px 10px;
+            display: flex;
+            justify-content: space-between;
+            .left {
+                font-weight: 700;
+                font-size: 16px;
+            }
+        }
+        .booking-modal-body {
+            padding: 0 10px;
+            height: 100%;
+        }
+        .booking-modal-footer {
+            text-align: right;
+            padding: 10px;
+            .btn-booking-confirm {
+                margin: 0 5px 0 0;
+            }
+        }
+    }
+}
