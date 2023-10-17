@@ -1,10 +1,11 @@
+import _ from 'lodash';
+import './BookingModal.scss';
+import { Modal } from 'reactstrap';
 import React, { Component } from 'react';
+import ProfileDoctor from '../ProfileDoctor';
+
 import { connect } from 'react-redux';
 // import {FormattedMessage} from 'react-intl'
-import { Modal } from 'reactstrap';
-import './BookingModal.scss';
-import ProfileDoctor from '../ProfileDoctor';
-import _ from 'lodash';
 
 class BookingModal extends Component {
     constructor(props) {
@@ -36,7 +37,11 @@ class BookingModal extends Component {
                     <div className="booking-modal-body">
                         {/* {JSON.stringify(dataTime)} */}
                         <div className="doctor-infor">
-                            <ProfileDoctor doctorId={doctorId} />
+                            <ProfileDoctor
+                                doctorId={doctorId}
+                                ísShowDescriptionDoctor={false}
+                                dataTime={dataTime}
+                            />
                         </div>
                         <div className="row">
                             <div className="col-6 form-grou py-2">
